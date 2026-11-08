@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,20 +9,20 @@
 
     <!-- 1. 视频背景层（固定在底层） -->
     <video autoplay muted loop playsinline style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1;">
-        <source src="images/video-hero.mp4" type="video/mp4">
+        <source src="video-hero.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
     </video>
 
     <!-- 背景音乐 -->
     <audio autoplay loop muted id="bgMusic" style="display: none;">
-        <source src="images/bgm-1.mp3" type="audio/mpeg">
+        <source src="bgm-1.mp3" type="audio/mpeg">
     </audio>
 
     <!-- 导航栏 -->
     <div style="background-color: rgba(255, 255, 255, 0.85); padding: 5px 30px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
         <div style="display: flex; align-items: center;">
             <a href="index.html">
-                <img src="images/b3b4205eeaaca92ea70173984870b701.jpg" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #87CEEB;" alt="白子头像">
+                <img src="b3b4205eeaaca92ea70173984870b701.jpg" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #87CEEB;" alt="白子头像">
             </a>
             <button onclick="document.getElementById('bgMusic').muted = false; document.getElementById('bgMusic').play();" 
                     style="margin-left: 15px; padding: 5px 12px; background-color: #87CEEB; color: white; border: none; border-radius: 15px; font-size: 12px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.3s;">
