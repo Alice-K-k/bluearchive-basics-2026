@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画工美术 - 蔚蓝档案</title>
+    <style>
+        /* ====== 沉浸式画廊专属样式 ====== */
+        
+        /* 画廊网格布局 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 相框卡片 */
+        .art-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(20, 20, 20, 0.5); 
+            border: 2px solid rgba(135, 206, 235, 0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            aspect-ratio: 4 / 3; /* 卡片比例，如果你的图是竖图，可以改成 3 / 4 */
+        }
+
+        /* 鼠标悬浮时的相框发光 */
+        .art-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #87CEEB;
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.6);
+        }
+
+        /* 画廊图片 */
+        .art-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .art-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* 图片上的文字遮罩 */
+        .art-info {
+            position: absolute;
+            bottom: -80px;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 50px 20px 20px 20px;
+            box-sizing: border-box;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .art-card:hover .art-info {
+            bottom: 0;
+        }
+
+        .art-info h3 {
+            color: #87CEEB;
+            margin: 0 0 5px 0;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .art-info p {
+            color: #ddd;
+            margin: 0;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body style="background-image: url('images/Videoframe_20250101_222415_com.huawei.himovie.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0; font-family: 'Microsoft YaHei', sans-serif;">
+
+    <!-- 背景音乐（保留你的专属音乐） -->
+    <audio autoplay loop muted id="bgMusic" style="display: none;">
+        <source src="images/bgm-4.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 导航栏（保留你的设置） -->
+    <div style="background-color: rgba(255, 255, 255, 0.85); padding: 5px 30px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="display: flex; align-items: center;">
+            <a href="index.html">
+                <img src="images/b3b4205eeaaca92ea70173984870b701.jpg" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #87CEEB;" alt="白子头像">
+            </a>
+            <button onclick="document.getElementById('bgMusic').muted = false; document.getElementById('bgMusic').play();" 
+                    style="margin-left: 15px; padding: 5px 12px; background-color: #87CEEB; color: white; border: none; border-radius: 15px; font-size: 12px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.3s;">
+                🔊 播放音乐
+            </button>
+        </div>
+        <div>
+            <a href="index.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">首页</a>
+            <a href="characters.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">角色介绍</a>
+            <a href="story.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">剧情背景</a>
+            <a href="art.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: bold;">画工美术</a>
+            <a href="music.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">音乐欣赏</a>
+        </div>
+    </div>
+
+    <!-- 内容区：沉浸式画廊 -->
+    <div style="margin: 120px auto 50px auto; width: 100%;">
+        
+        <!-- 顶部标题 -->
+        <h1 style="color: white; text-align: center; font-size: 42px; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); margin-bottom: 10px; letter-spacing: 5px;">ART GALLERY</h1>
+        <p style="color: #87CEEB; text-align: center; font-size: 16px; margin-bottom: 50px; text-shadow: 1px 1px 5px rgba(0,0,0,0.8);">— 捕捉青春的瞬间，记录基沃托斯的光影 —</p>
+
+        <!-- 画作画廊（6张图） -->
+        <div class="gallery-grid">
+
+            <!-- 画作 1 -->
+            <div class="art-card">
+                <img src="images/da480c7a3b16e958f8d964ff0eb1e1c3.jpg" alt="美术图1">
+                <div class="art-info">
+                    <h3>砂狼白子</h3>
+                    <p>阿拜多斯高中 · 对策委员会</p>
+                </div>
+            </div>
+
+            <!-- 画作 2 -->
+            <div class="art-card">
+                <img src="images/872f21eac3a4054f21d3915b924fc281.jpg" alt="美术图2">
+                <div class="art-info">
+                    <h3>小鸟游星野</h3>
+                    <p>阿拜多斯高中 · 对策委员会</p>
+                </div>
+            </div>
+
+            <!-- 画作 3 -->
+            <div class="art-card">
+                <img src="images/47b927c9031d4cc51e6240d16beb6b30.jpg" alt="美术图3">
+                <div class="art-info">
+                    <h3>黑见芹香</h3>
+                    <p>阿拜多斯高中 · 对策委员会</p>
+                </div>
+            </div>
+
+            <!-- 画作 4 -->
+            <div class="art-card">
+                <img src="images/df1a302059bf49c4eca8c495cc69f9b5.jpg" alt="美术图4">
+                <div class="art-info">
+                    <h3>空崎日奈</h3>
+                    <p>格黑娜学园 · 风纪委员会</p>
+                </div>
+            </div>
+
+            <!-- 画作 5 -->
+            <div class="art-card">
+                <img src="images/966df493c8320f9698bbd2546842ac5f.jpg" alt="美术图5">
+                <div class="art-info">
+                    <h3>浅黄睦月</h3>
+                    <p>格黑娜学园 · 便利屋68</p>
+                </div>
+            </div>
+
+            <!-- 画作 6 -->
+            <div class="art-card">
+                <img src="images/104f832fcfed1e8272cd0dfd0685335a.jpg" alt="美术图6">
+                <div class="art-info">
+                    <h3>天童爱丽丝</h3>
+                    <p>千禧年科技学院 · 游戏开发部</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

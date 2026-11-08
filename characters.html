@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>角色介绍</title>
+    <style>
+        /* ====== 高级二次元样式区 ====== */
+        
+        /* 毛玻璃卡片基础样式 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75); /* 稍微提高了白底透明度，让黑字更清晰 */
+            backdrop-filter: blur(12px); /* 磨砂玻璃特效 */
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        /* 鼠标悬停时卡片微微上浮 */
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(135, 206, 235, 0.3);
+        }
+
+        /* 图片容器（针对横图优化了高度） */
+        .char-img-box {
+            width: 45%;
+            height: 320px; /* 稍微降低了高度，让横图看起来不那么拥挤 */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .char-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 保证横图铺满且不变形 */
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* 鼠标悬停时图片放大 */
+        .glass-card:hover .char-img-box img {
+            transform: scale(1.05);
+        }
+
+        /* 文字容器 */
+        .char-info {
+            width: 55%;
+            padding: 40px;
+            color: #333;
+        }
+
+        /* 专属名字样式 */
+        .char-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* 角色专属小标签 */
+        .char-tag {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: white;
+            font-weight: normal;
+        }
+
+        .char-desc {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        /* ====== 左右交替魔法 ====== */
+        .glass-card.reverse {
+            flex-direction: row-reverse;
+        }
+        .glass-card.reverse .char-name {
+            flex-direction: row-reverse;
+        }
+
+        /* ====== 手机端适配 ====== */
+        @media (max-width: 768px) {
+            .glass-card, .glass-card.reverse {
+                flex-direction: column;
+                height: auto;
+            }
+            .char-img-box, .char-info {
+                width: 100%;
+            }
+            .char-img-box {
+                height: 250px; /* 手机上图片高度 */
+            }
+            .char-name {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body style="background-image: url('images/Image_1723446225370.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0; font-family: 'Microsoft YaHei', sans-serif;">
+
+    <!-- 导航栏 -->
+    <div style="background-color: rgba(255, 255, 255, 0.85); padding: 5px 30px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div>
+            <a href="index.html">
+                <img src="images/b3b4205eeaaca92ea70173984870b701.jpg" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #87CEEB;" alt="白子头像">
+            </a>
+        </div>
+        <div>
+            <a href="index.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">首页</a>
+            <a href="characters.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: bold;">角色介绍</a>
+            <a href="story.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">剧情背景</a>
+            <a href="art.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">画工美术</a>
+            <a href="music.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">音乐欣赏</a>
+        </div>
+    </div>
+
+    <!-- 内容区 -->
+    <div style="margin: 120px auto 50px auto; width: 85%; max-width: 1000px;">
+        
+        <h1 style="color: white; text-align: center; font-size: 42px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom: 50px; letter-spacing: 5px;">STUDENT ARCHIVE</h1>
+
+        <!-- 角色 1：日奈（左图右文） -->
+        <div class="glass-card">
+            <div class="char-img-box">
+                <img src="images/IMG_2942.jpg" alt="日奈">
+            </div>
+            <div class="char-info">
+                <h2 class="char-name">
+                    空崎日奈 
+                    <span class="char-tag" style="background-color: #9370DB;">格黑娜</span>
+                </h2>
+                <p style="margin: 0; color: #9370DB; font-weight: bold;">Sorasaki Hina</p>
+                <p class="char-desc">
+                    格黑娜学园风纪委员会委员长。虽然平时总是疲惫不堪、不想工作，但在面对威胁时，会展现出压倒性的武力。是格黑娜最强战力，也是被所有人敬畏的存在。
+                </p>
+            </div>
+        </div>
+
+        <!-- 角色 2：睦月（右图左文，加了 reverse 类） -->
+        <div class="glass-card reverse">
+            <div class="char-img-box">
+                <img src="images/IMG_2943.jpg" alt="睦月">
+            </div>
+            <div class="char-info">
+                <h2 class="char-name">
+                    浅黄睦月 
+                    <span class="char-tag" style="background-color: #FF1493;">格黑娜</span>
+                </h2>
+                <p style="margin: 0; color: #FF1493; font-weight: bold;">Asagi Mutsuki</p>
+                <p class="char-desc">
+                    格黑娜学园便利屋68的成员。最喜欢恶作剧和看别人困扰的样子，是个不折不扣的“小恶魔”。虽然经常惹麻烦，但她的战术头脑和爆破技巧在便利屋中首屈一指。
+                </p>
+            </div>
+        </div>
+
+        <!-- 角色 3：芹香（左图右文，恢复正常方向） -->
+        <div class="glass-card">
+            <div class="char-img-box">
+                <img src="images/IMG_2944.png" alt="芹香">
+            </div>
+            <div class="char-info">
+                <h2 class="char-name">
+                    黑见芹香 
+                    <span class="char-tag" style="background-color: #FF8C00;">阿拜多斯</span>
+                </h2>
+                <p style="margin: 0; color: #FF8C00; font-weight: bold;">Kuromi Serika</p>
+                <p class="char-desc">
+                    阿拜多斯高中一年级学生，对策委员会成员。是个嘴硬心软的傲娇猫娘，每天都在为了偿还学校的巨额债务而辛苦打工。虽然嘴上总是抱怨，但比任何人都关心学校的命运。
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

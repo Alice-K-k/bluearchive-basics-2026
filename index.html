@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蔚蓝档案游戏介绍</title>
+</head>
+<body style="margin: 0; padding: 0; overflow-x: hidden;">
+
+    <!-- 1. 视频背景层（固定在底层） -->
+    <video autoplay muted loop playsinline style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1;">
+        <source src="images/video-hero.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+    </video>
+
+    <!-- 背景音乐 -->
+    <audio autoplay loop muted id="bgMusic" style="display: none;">
+        <source src="images/bgm-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 导航栏 -->
+    <div style="background-color: rgba(255, 255, 255, 0.85); padding: 5px 30px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="display: flex; align-items: center;">
+            <a href="index.html">
+                <img src="images/b3b4205eeaaca92ea70173984870b701.jpg" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #87CEEB;" alt="白子头像">
+            </a>
+            <button onclick="document.getElementById('bgMusic').muted = false; document.getElementById('bgMusic').play();" 
+                    style="margin-left: 15px; padding: 5px 12px; background-color: #87CEEB; color: white; border: none; border-radius: 15px; font-size: 12px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.3s;">
+                🔊 播放音乐
+            </button>
+        </div>
+        <div>
+            <a href="index.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: bold;">首页</a>
+            <a href="characters.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">角色介绍</a>
+            <a href="story.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">剧情背景</a>
+            <a href="art.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">画工美术</a>
+            <a href="music.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">音乐欣赏</a>
+        </div>
+    </div>
+
+    <!-- 3. 内容区（稍微透明一点，让背景视频露出来） -->
+    <div style="background-color: rgba(255, 255, 255, 0.75); padding: 40px; border-radius: 15px; margin: 120px auto 30px auto; width: 80%; max-width: 800px; color: black; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+        <h1>Blue Archive</h1>
+        <p>where  all  miracles  begin.</p>
+        <p>一切奇迹的起点。</p>
+        
+
+        
+    </div>
+    <div style="position: absolute; bottom: 12%; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center;">
+        
+        <a href="characters.html" 
+           style="display: inline-block; padding: 8px 120px; background-color: rgba(255, 255, 255, 0.35); color: #333333; text-decoration: none; font-size: 18px; font-weight: bold; border-radius: 5px; border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; letter-spacing: 4px; backdrop-filter: blur(4px);"
+           onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.6)'; this.style.transform='scale(1.02)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)';"
+           onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.35)'; this.style.transform='scale(1)'; this.style.boxShadow='0 2px 10px rgba(0, 0, 0, 0.1)';">
+            Touch to Start
+        </a>
+        
+    </div>
+
+</body>
+</html>
+

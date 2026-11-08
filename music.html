@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐欣赏 - 蔚蓝档案</title>
+    <style>
+        /* ====== 播放器专属样式 ====== */
+        .player-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+        }
+
+        /* 黑胶唱片外框（带发光特效） */
+        .vinyl-record {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: transparent; /* 背景透明 */
+            border: 4px solid rgba(255, 255, 255, 0.8); /* 白色发光边框 */
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); /* 外部白色光晕 */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rotate 20s linear infinite;
+            animation-play-state: paused;
+            cursor: pointer;
+        }
+
+        /* 旋转动画 */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 唱片中心的封面 */
+        .vinyl-cover {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: none; /* 去掉原来的灰色边框 */
+        }
+
+        
+        
+
+        /* 播放器控制台（毛玻璃长条） */
+        .player-controls {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 20px 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        /* 歌曲标题 */
+        .song-title {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* 进度条 */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #ddd;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #87CEEB;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* 播放按钮 */
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #87CEEB;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(135, 206, 235, 0.5);
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: #4682B4;
+            box-shadow: 0 6px 20px rgba(135, 206, 235, 0.8);
+        }
+    </style>
+</head>
+<body style="background-image: url('images/Screenshot_20241207_100640.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0; font-family: 'Microsoft YaHei', sans-serif;">
+
+    <!-- 导航栏 -->
+    <div style="background-color: rgba(255, 255, 255, 0.85); padding: 5px 30px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div>
+            <a href="index.html">
+                <img src="images/b3b4205eeaaca92ea70173984870b701.jpg" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #87CEEB;" alt="白子头像">
+            </a>
+        </div>
+        <div>
+            <a href="index.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">首页</a>
+            <a href="characters.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">角色介绍</a>
+            <a href="story.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">剧情背景</a>
+            <a href="art.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px;">画工美术</a>
+            <a href="music.html" style="color: black; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: bold;">音乐欣赏</a>
+        </div>
+    </div>
+
+    <!-- 播放器主体内容 -->
+    <div class="player-container">
+        
+        <h1 style="color: white; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); letter-spacing: 5px; margin-bottom: 40px;">BGM PLAYER</h1>
+
+        <!-- 黑胶唱片 -->
+        <div class="vinyl-record" id="vinyl" onclick="togglePlay()">
+            <!-- 注意：这里需要一张正方形的封面图，如果没有，可以用你的白子头像代替 -->
+            <img src="images/Videoframe_20250101_221852_com.huawei.himovie.jpg" alt="专辑封面" class="vinyl-cover">
+            <div class="vinyl-hole"></div>
+        </div>
+
+        <!-- 控制台 -->
+        <div class="player-controls">
+            <h3 class="song-title">Memories of Kindness</h3>
+            
+            <div class="progress-bar" onclick="seek(event)">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+
+            <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+        </div>
+
+    </div>
+
+    <!-- 音频标签 -->
+    <audio id="audio" loop>
+        <source src="images/bgm-3.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 交互逻辑 JavaScript -->
+    <script>
+        const audio = document.getElementById('audio');
+        const playBtn = document.getElementById('playBtn');
+        const vinyl = document.getElementById('vinyl');
+        const progress = document.getElementById('progress');
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = '⏸';
+                vinyl.style.animationPlayState = 'running';
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '▶';
+                vinyl.style.animationPlayState = 'paused';
+            }
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progress.style.width = percent + '%';
+        });
+
+        function seek(e) {
+            const bar = e.currentTarget;
+            const percent = e.offsetX / bar.offsetWidth;
+            audio.currentTime = percent * audio.duration;
+        }
+    </script>
+
+</body>
+</html>
